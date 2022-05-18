@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="d5850d08-6dcc-4a2f-92a3-1c63c9498ba4" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="hello-worldFlow" doc:id="eb2c662e-79f6-411e-ac0e-d6038badf06e" >
+		<http:listener doc:name="Listener" doc:id="3a5b3f2c-357e-47a9-b20e-b2ff80b1bfd8" config-ref="HTTP_Listener_config" path="/hello"/>
+		<set-payload value='#["hello-world"]' doc:name="Set Payload" doc:id="c53fcf0e-14ac-48aa-88e1-87cd3bd93d0a" />
+		<logger level="INFO" doc:name="Logger" doc:id="a5f43c78-944a-429d-aabb-818f04c672ec" message="#[payload]"/>
+	</flow>
+</mule>
